@@ -1,9 +1,3 @@
-import os
-
-
-# basedir = os.path.abspath('.')
-
-
 class Config:
     pass
 
@@ -13,8 +7,6 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    PORT = '8081'
-    IP = '0.0.0.0'
     DEBUG = True
 
 

@@ -3,7 +3,7 @@ from os import listdir, path
 import re
 
 
-class ParserID(Unpacker):
+class ParserName(Unpacker):
 
     """
     ParserID рассчитан на парсинг файлов скаченных с Ftp.
