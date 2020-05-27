@@ -1,5 +1,5 @@
 from configs.package_configs import ConfigID
-from configs.app_config import main_configs
+from configs.app_configs import main_configs
 
 
 class ConfigDealer:
