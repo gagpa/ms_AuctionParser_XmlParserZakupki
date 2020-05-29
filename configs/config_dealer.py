@@ -1,26 +1,26 @@
-from configs.package_configs import ConfigID
+from configs.package_configs import package_configs
 from configs.app_configs import main_configs
 
 
 class ConfigDealer:
 
     __main = main_configs
-    __package = {'parser_name': ConfigID}
+    __packages = package_configs
 
     @classmethod
     def get_main(cls, config_name):
         try:
             config = cls.__main[config_name]
-            return config
+            return config()
         except KeyError:
             print(f'Ваш ключ: {config_name} не подходит. Возможные ключи: {cls.__main.keys()}')
             raise KeyError
 
     @classmethod
-    def get_package(cls, package_name):
+    def get_package_config(cls, package_name):
         try:
-            config = cls.__package[package_name]
-            return config
+            config = cls.__packages[package_name]
+            return config()
         except KeyError:
-            print(f'Ваш ключ: {package_name} не подходит. Возможные ключи: {cls.__package.keys()}')
+            print(f'Ваш ключ: {package_name} не подходит. Возможные ключи: {cls.__packages.keys()}')
             raise KeyError

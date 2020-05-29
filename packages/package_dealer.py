@@ -1,13 +1,12 @@
-from packages.parsers import ParserName, ParserXmlZakupki44
+from packages.parsers import parsers
 
 
 class PackageDealer:
 
-    __parsers = {'parser_name': ParserName,
-               'parser_xml44': ParserXmlZakupki44}
+    __parsers = parsers
 
     @classmethod
-    def get_parsers(cls, parser_name):
+    def get_parser(cls, parser_name):
         try:
             parser = cls.__parsers[parser_name]
             return parser
