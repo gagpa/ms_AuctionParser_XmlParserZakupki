@@ -31,25 +31,20 @@ def parse_name():
     Api команда. Передает тип файла, номер аукциона, внутренний номер(нужен для составления ссылки на XmlFile),
     полученные из названий файлов Xml.
     """
-    try:
-        a = 1/0
-        local_path = request.args.get('local_path')
-        if local_path:
-            config_name = 'PARSER_XML_NAME'
-            parser_name = 'PARSER_XML_NAME'
+    local_path = request.args.get('local_path')
+    if local_path:
+        config_name = 'PARSER_XML_NAME'
+        parser_name = 'PARSER_XML_NAME'
 
-            config = ConfigDealer.get_package_config(config_name)
-            parser = PackageDealer.get_parser(parser_name)(config)
-            data = parser.parse(local_path)
-            if data:
-                return jsonify({'status': True,
-                                'data': data})
-
-            return jsonify({'status': False,
-                            'massage': f'Файлы не найдены: {config.parse_path}'})
+        config = ConfigDealer.get_package_config(config_name)
+        parser = PackageDealer.get_parser(parser_name)(config)
+        data = parser.parse(local_path)
+        if data:
+            return jsonify({'status': True,
+                            'data': data})
 
         return jsonify({'status': False,
-                        'message': 'Параметр <link> не передан'})
-    except KeyError:
-        return jsonify({'status': False,
-                        'message': ''})
+                        'massage': f'Файлы не найдены: {config.parse_path}'})
+
+    return jsonify({'status': False,
+                    'message': 'Параметр <link> не передан'})
