@@ -5,12 +5,12 @@ from packages.package_dealer import PackageDealer
 from . import api
 
 
-@api.route('/xmlparse_url')
+@api.route('/parse_url')
 def parse_xml():
     """Api команда. Передает объект Auction, Customer, Lots, полученные по ссылке urlXml."""
     xml_url = request.args.get('xml_url')
     if xml_url:
-        parser_name = 'XMLPARSER_URL'
+        parser_name = 'PARSER_XML_URL'
 
         parser = PackageDealer.get_parser(parser_name)()
         info = parser.parse(xml_url)
@@ -25,7 +25,7 @@ def parse_xml():
                     'message': 'Ссылка не получена. Убедитесь что вы передали её в переменной'})
 
 
-@api.route('/xmlparse_name')
+@api.route('/parse_name')
 def parse_name():
     """
     Api команда. Передает тип файла, номер аукциона, внутренний номер(нужен для составления ссылки на XmlFile),
@@ -33,8 +33,8 @@ def parse_name():
     """
     local_path = request.args.get('local_path')
     if local_path:
-        config_name = 'XMLPARSER_NAME'
-        parser_name = 'XMLPARSER_NAME'
+        config_name = 'PARSER_XML_NAME'
+        parser_name = 'PARSER_XML_NAME'
 
         config = ConfigDealer.get_package_config(config_name)
         parser = PackageDealer.get_parser(parser_name)(config)

@@ -16,6 +16,8 @@ class ParserName(Unpacker):
                                                                                  указанное в этом методе).
     """
 
+    parse_path = None
+
     def __init__(self, config):
         """
         Config - это Python объект.
@@ -25,7 +27,6 @@ class ParserName(Unpacker):
         Директории ,на которые указаны пути, должны быть пустыми
         """
         self.save_path = config.save_path
-        self.parse_path = config.parse_path
 
     def parse(self, file_path=None) -> list:
         """
@@ -81,7 +82,7 @@ class ParserName(Unpacker):
     @staticmethod
     def is_xml(xml_path: str) -> bool:
         """Показывает является файл Xml"""
-        return xml_path.endswith('.xml') and not ParserID.is_dir(xml_path)
+        return xml_path.endswith('.xml') and not ParserName.is_dir(xml_path)
 
     @staticmethod
     def is_dir(dir_path: str) -> bool:
